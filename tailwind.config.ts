@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,43 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Agriculture-specific colors
+				eco: {
+					'50': '#f0f9e8',
+					'100': '#dbf0cb',
+					'200': '#bee3a5',
+					'300': '#9cd379',
+					'400': '#81c256',
+					'500': '#68ab38',
+					'600': '#52892c',
+					'700': '#3f6722',
+					'800': '#2f4d1a',
+					'900': '#1a2e0e',
+				},
+				soil: {
+					'50': '#f9f5f0',
+					'100': '#f0e6d8',
+					'200': '#e0ccb1',
+					'300': '#cead85',
+					'400': '#bd8f5f',
+					'500': '#a6784b',
+					'600': '#8d6e63',
+					'700': '#6c4a32',
+					'800': '#503724',
+					'900': '#332318',
+				},
+				tech: {
+					'50': '#f2f5f9',
+					'100': '#e0e7f0',
+					'200': '#c9d5e8',
+					'300': '#a9bbd8',
+					'400': '#8598c2',
+					'500': '#667aad',
+					'600': '#4f5d8c',
+					'700': '#3e486f',
+					'800': '#2f3650',
+					'900': '#1e2234',
 				}
 			},
 			borderRadius: {
@@ -84,11 +122,49 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-out': {
+					'0%': {
+						opacity: '1'
+					},
+					'100%': {
+						opacity: '0'
+					}
+				},
+				'pulse-gentle': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.8'
+					}
+				},
+				'spin-slow': {
+					'0%': {
+						transform: 'rotate(0deg)'
+					},
+					'100%': {
+						transform: 'rotate(360deg)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+				'pulse-gentle': 'pulse-gentle 3s ease-in-out infinite',
+				'spin-slow': 'spin-slow 8s linear infinite'
 			}
 		}
 	},
