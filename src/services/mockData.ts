@@ -5,6 +5,7 @@ import { Thread } from '@/components/forum/ThreadCard';
 import { Project } from '@/components/projects/ProjectCard';
 import { Category } from '@/components/forum/CategoryList';
 import { SensorData } from '@/components/dashboard/SensorChart';
+import React from 'react';
 
 // Mock product data
 export const mockProducts: Product[] = [
@@ -255,7 +256,7 @@ export const mockForumCategories: Category[] = [
     id: "soil-sensors",
     name: "Soil Sensors",
     description: "Discuss soil monitoring technology and best practices",
-    icon: <span className="text-lg">🌱</span>,
+    icon: "🌱",
     threadCount: 43,
     color: "bg-soil-100 text-soil-800"
   },
@@ -263,7 +264,7 @@ export const mockForumCategories: Category[] = [
     id: "irrigation",
     name: "Irrigation Systems",
     description: "Water management and irrigation technology discussions",
-    icon: <span className="text-lg">💧</span>,
+    icon: "💧",
     threadCount: 67,
     color: "bg-blue-100 text-blue-800"
   },
@@ -271,7 +272,7 @@ export const mockForumCategories: Category[] = [
     id: "drones-robotics",
     name: "Drones & Robotics",
     description: "Autonomous farming equipment and aerial imaging",
-    icon: <span className="text-lg">🤖</span>,
+    icon: "🤖",
     threadCount: 89,
     color: "bg-tech-100 text-tech-800"
   },
@@ -279,7 +280,7 @@ export const mockForumCategories: Category[] = [
     id: "greenhouses",
     name: "Smart Greenhouses",
     description: "Climate-controlled growing environment technologies",
-    icon: <span className="text-lg">🏡</span>,
+    icon: "🏡",
     threadCount: 32,
     color: "bg-eco-100 text-eco-800"
   },
@@ -287,7 +288,7 @@ export const mockForumCategories: Category[] = [
     id: "livestock",
     name: "Livestock Monitoring",
     description: "Health tracking and management systems for animals",
-    icon: <span className="text-lg">🐄</span>,
+    icon: "🐄",
     threadCount: 24,
     color: "bg-amber-100 text-amber-800"
   },
@@ -295,7 +296,7 @@ export const mockForumCategories: Category[] = [
     id: "beginner-questions",
     name: "Beginner Questions",
     description: "New to AgTech? Ask your questions here",
-    icon: <span className="text-lg">❓</span>,
+    icon: "❓",
     threadCount: 118,
     color: "bg-purple-100 text-purple-800"
   }
@@ -508,7 +509,7 @@ export const getProjectById = (id: string): Project | undefined => {
 // Get threads by category
 export const getThreadsByCategory = (categoryId: string): Thread[] => {
   return mockThreads.filter(thread => 
-    thread.category.toLowerCase().replace(/[^a-z0-9]/g, '-') === categoryId
+    thread.category.toLowerCase().replace(/\s+/g, '-') === categoryId
   );
 };
 
