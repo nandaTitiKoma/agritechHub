@@ -8,9 +8,9 @@ const Login = () => {
     <PageLayout>
       <div className="container py-12">
         <div className="max-w-md mx-auto">
-          <h1 className="text-3xl font-bold text-center mb-6">Welcome to AgriTech Hub</h1>
+          <h1 className="text-3xl font-bold text-center mb-6">Selamat Datang di AgriTech Hub</h1>
           <p className="text-muted-foreground text-center mb-8">
-            Log in to your account or create a new one to access all features
+            Masuk ke akun Anda atau buat akun baru untuk mengakses semua fitur
           </p>
           
           <AuthForm />

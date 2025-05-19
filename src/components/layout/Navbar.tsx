@@ -24,10 +24,10 @@ export function Navbar() {
   const isMobile = useIsMobile();
   
   const navLinks = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/marketplace', label: 'Marketplace', icon: ShoppingBag },
-    { path: '/dashboard', label: 'IoT Dashboard', icon: BarChart },
-    { path: '/forum', label: 'Community Forum', icon: MessageSquare },
+    { path: '/', label: 'Beranda', icon: Home },
+    { path: '/marketplace', label: 'Pasar', icon: ShoppingBag },
+    { path: '/dashboard', label: 'Dashboard IoT', icon: BarChart },
+    { path: '/forum', label: 'Forum Komunitas', icon: MessageSquare },
     { path: '/projects', label: 'Open Source', icon: Code },
   ];
   
@@ -79,15 +79,15 @@ export function Navbar() {
         )}
         
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" aria-label="Search">
+          <Button variant="ghost" size="icon" aria-label="Cari">
             <Search className="h-5 w-5" />
           </Button>
           
           <Link to="/cart">
-            <Button variant="ghost" size="icon" aria-label="Cart">
+            <Button variant="ghost" size="icon" aria-label="Keranjang">
               <ShoppingCart className="h-5 w-5" />
               <span className="absolute -top-1 -right-1 bg-eco-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
+                3
               </span>
             </Button>
           </Link>
@@ -95,7 +95,7 @@ export function Navbar() {
           <Link to="/login">
             <Button variant="ghost" size="sm" className="gap-1">
               <LogIn className="h-4 w-4" />
-              <span className="hidden sm:inline-block">Login</span>
+              <span className="hidden sm:inline-block">Masuk</span>
             </Button>
           </Link>
         </div>

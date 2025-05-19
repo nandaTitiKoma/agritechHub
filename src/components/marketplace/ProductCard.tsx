@@ -1,10 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Heart, ShoppingCart, Star } from 'lucide-react';
+import { Heart, ShoppingCart, Star, Check } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 export interface Product {
   id: string;
@@ -24,6 +25,17 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const { toast } = useToast();
+  const [isInCart, setIsInCart] = useState(false);
+  
+  const handleAddToCart = () => {
+    setIsInCart(true);
+    toast({
+      title: "Berhasil ditambahkan ke keranjang",
+      description: `${product.title} telah ditambahkan ke keranjang belanja Anda.`,
+    });
+  };
+
   return (
     <Card className="overflow-hidden h-full flex flex-col transition-all duration-200 hover:shadow-md">
       <div className="relative">
@@ -41,15 +53,15 @@ export function ProductCard({ product }: ProductCardProps) {
             className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-sm text-foreground hover:bg-white/90 hover:text-primary"
           >
             <Heart className="h-4 w-4" />
-            <span className="sr-only">Add to wishlist</span>
+            <span className="sr-only">Tambahkan ke wishlist</span>
           </Button>
         </div>
         <div className="absolute top-2 left-2 flex flex-col gap-1">
           {product.isNew && (
-            <Badge className="bg-eco-500">New</Badge>
+            <Badge className="bg-eco-500">Baru</Badge>
           )}
           {product.is3D && (
-            <Badge variant="outline" className="bg-white/80 backdrop-blur-sm">3D Model</Badge>
+            <Badge variant="outline" className="bg-white/80 backdrop-blur-sm">Model 3D</Badge>
           )}
           {product.hasIoT && (
             <Badge variant="outline" className="bg-white/80 backdrop-blur-sm">IoT Enabled</Badge>
@@ -73,12 +85,26 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.title}
           </h3>
         </Link>
-        <div className="mt-2 font-semibold">${product.price.toFixed(2)}</div>
+        <div className="mt-2 font-semibold">Rp{(product.price * 15000).toLocaleString('id-ID')}</div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button className="w-full gap-2">
-          <ShoppingCart className="h-4 w-4" />
-          Add to Cart
+        <Button 
+          className="w-full gap-2" 
+          onClick={handleAddToCart}
+          disabled={isInCart}
+          variant={isInCart ? "outline" : "default"}
+        >
+          {isInCart ? (
+            <>
+              <Check className="h-4 w-4" />
+              Ditambahkan
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="h-4 w-4" />
+              Tambahkan ke Keranjang
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>

@@ -12,20 +12,24 @@ const Marketplace = () => {
     <PageLayout>
       <div className="container py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">Agricultural Innovation Marketplace</h1>
+          <h1 className="text-3xl font-bold mb-4">Pasar Inovasi Pertanian</h1>
           <p className="text-muted-foreground max-w-3xl">
-            Discover the latest agricultural technologies from innovative startups and research institutions. 
-            Browse by category, or use the filters to find exactly what you need.
+            Temukan teknologi pertanian terbaru dari startup inovatif dan lembaga penelitian. 
+            Telusuri berdasarkan kategori, atau gunakan filter untuk menemukan apa yang Anda butuhkan.
           </p>
         </div>
         
-        <ProductFilters />
-        
-        <div className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6">
+          <div className="lg:sticky lg:top-20 lg:self-start">
+            <ProductFilters onFilterChange={products => setFilteredProducts(products)} />
+          </div>
+          
+          <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
