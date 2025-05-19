@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Heart, ShoppingCart, Star, Check, Truck, ArrowLeft } from 'lucide-react';
-import { Product } from '@/components/marketplace/ProductCard';
+import { Product, ProductCard } from '@/components/marketplace/ProductCard';
 import { getProductById, mockProducts } from '@/services/mockData';
 import { toast } from 'sonner';
 
