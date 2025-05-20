@@ -13,7 +13,8 @@ import {
   BarChart,
   MessageSquare,
   Code,
-  LogIn
+  LogIn,
+  Store
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -29,6 +30,7 @@ export function Navbar() {
     { path: '/dashboard', label: 'Dashboard IoT', icon: BarChart },
     { path: '/forum', label: 'Forum Komunitas', icon: MessageSquare },
     { path: '/projects', label: 'Open Source', icon: Code },
+    { path: '/seller', label: 'Dasbor Penjual', icon: Store },
   ];
   
   const isActivePath = (path: string) => {
@@ -86,7 +88,7 @@ export function Navbar() {
           <Link to="/cart">
             <Button variant="ghost" size="icon" className="relative" aria-label="Keranjang">
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-2 -right-2 bg-eco-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 bg-eco-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 3
               </span>
             </Button>
