@@ -230,9 +230,11 @@ const Projects = () => {
                     <p className="text-sm">Bagikan dengan komunitas!</p>
                   </div>
                 </div>
-                <Button className="w-full">
-                  Kirim Proyek Anda
-                </Button>
+                <Link to="/projects/new">
+                  <Button className="w-full">
+                    Kirim Proyek Anda
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
