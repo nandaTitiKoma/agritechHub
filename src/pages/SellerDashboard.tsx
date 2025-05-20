@@ -4,11 +4,8 @@ import { PageLayout } from '@/components/layout/PageLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Plus, Edit, Trash2, X, Package, ShoppingCart, BarChart, Settings } from 'lucide-react';
+import { Plus, Package, ShoppingCart, BarChart, Settings } from 'lucide-react';
 import { ProductForm } from '@/components/seller/ProductForm';
 import { ProductList } from '@/components/seller/ProductList';
 import { SalesSummary } from '@/components/seller/SalesSummary';
@@ -80,27 +77,26 @@ const SellerDashboard = () => {
                     <span>Pengaturan</span>
                   </TabsTrigger>
                 </TabsList>
+                
+                <TabsContent value="products" className="space-y-4 mt-4">
+                  <ProductList />
+                </TabsContent>
+                <TabsContent value="orders" className="space-y-4 mt-4">
+                  <OrdersList />
+                </TabsContent>
+                <TabsContent value="analytics" className="space-y-4 mt-4">
+                  <div className="text-center p-8">
+                    <h3 className="text-xl font-medium mb-2">Analitik Toko</h3>
+                    <p className="text-muted-foreground">
+                      Fitur analitik toko sedang dalam pengembangan. Segera hadir!
+                    </p>
+                  </div>
+                </TabsContent>
+                <TabsContent value="settings" className="space-y-4 mt-4">
+                  <StoreSettings />
+                </TabsContent>
               </Tabs>
             </CardHeader>
-            <CardContent>
-              <TabsContent value="products" className="space-y-4">
-                <ProductList />
-              </TabsContent>
-              <TabsContent value="orders" className="space-y-4">
-                <OrdersList />
-              </TabsContent>
-              <TabsContent value="analytics" className="space-y-4">
-                <div className="text-center p-8">
-                  <h3 className="text-xl font-medium mb-2">Analitik Toko</h3>
-                  <p className="text-muted-foreground">
-                    Fitur analitik toko sedang dalam pengembangan. Segera hadir!
-                  </p>
-                </div>
-              </TabsContent>
-              <TabsContent value="settings" className="space-y-4">
-                <StoreSettings />
-              </TabsContent>
-            </CardContent>
           </Card>
         </div>
       </div>
