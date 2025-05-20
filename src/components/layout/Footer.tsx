@@ -14,7 +14,7 @@ export function Footer() {
             <span className="font-bold text-xl">AgriTech Hub</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Connecting farmers with innovative technology solutions for sustainable agriculture.
+            Menghubungkan petani dengan solusi teknologi inovatif untuk pertanian berkelanjutan.
           </p>
           <div className="flex space-x-4">
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -33,44 +33,44 @@ export function Footer() {
         </div>
         
         <div>
-          <h5 className="font-medium text-base mb-4">Quick Links</h5>
+          <h5 className="font-medium text-base mb-4">Tautan Cepat</h5>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link></li>
-            <li><Link to="/marketplace" className="text-muted-foreground hover:text-foreground transition-colors">Marketplace</Link></li>
-            <li><Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">IoT Dashboard</Link></li>
-            <li><Link to="/forum" className="text-muted-foreground hover:text-foreground transition-colors">Community Forum</Link></li>
-            <li><Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Open Source Projects</Link></li>
+            <li><Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Beranda</Link></li>
+            <li><Link to="/marketplace" className="text-muted-foreground hover:text-foreground transition-colors">Pasar</Link></li>
+            <li><Link to="/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">Dashboard IoT</Link></li>
+            <li><Link to="/forum" className="text-muted-foreground hover:text-foreground transition-colors">Forum Komunitas</Link></li>
+            <li><Link to="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Proyek Open Source</Link></li>
           </ul>
         </div>
         
         <div>
-          <h5 className="font-medium text-base mb-4">Resources</h5>
+          <h5 className="font-medium text-base mb-4">Sumber Daya</h5>
           <ul className="space-y-2 text-sm">
             <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a></li>
-            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Research Papers</a></li>
-            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Tutorials</a></li>
-            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Events</a></li>
-            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Webinars</a></li>
+            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Makalah Penelitian</a></li>
+            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Tutorial</a></li>
+            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Acara</a></li>
+            <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Webinar</a></li>
           </ul>
         </div>
         
         <div>
-          <h5 className="font-medium text-base mb-4">Contact Us</h5>
+          <h5 className="font-medium text-base mb-4">Hubungi Kami</h5>
           <ul className="space-y-2 text-sm">
             <li className="text-muted-foreground">Email: contact@agritechhub.com</li>
-            <li className="text-muted-foreground">Phone: +1 (555) 123-4567</li>
-            <li className="text-muted-foreground">Address: 123 Innovation Way, Agri Valley, CA 94123</li>
+            <li className="text-muted-foreground">Telepon: +1 (555) 123-4567</li>
+            <li className="text-muted-foreground">Alamat: Jl. Inovasi No. 123, Lembah Pertanian, Jakarta 12345</li>
           </ul>
         </div>
       </div>
       
       <div className="container mt-8 pt-8 border-t">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">© 2025 AgriTech Hub. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2025 AgriTech Hub. Hak Cipta Dilindungi.</p>
           <div className="flex space-x-6 text-xs">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</a>
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Kebijakan Privasi</a>
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Syarat Layanan</a>
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Kebijakan Cookie</a>
           </div>
         </div>
       </div>
