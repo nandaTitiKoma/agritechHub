@@ -45,13 +45,13 @@ export function ThreadCard({ thread }: ThreadCardProps) {
   
   return (
     <Card className={cn(
-      "transition-all duration-200 hover:border-primary/50 hover:shadow-md overflow-hidden",
+      "transition-all duration-200 hover:border-primary/50 hover:shadow-md overflow-hidden animate-fade-in",
       thread.isSticky && "border-accent"
     )}>
       <CardContent className="p-4">
         <div className="flex justify-between items-start gap-4 mb-2">
           <div className="flex-1">
-            <div className="flex items-center gap-1 mb-1.5">
+            <div className="flex flex-wrap items-center gap-1 mb-1.5">
               <Badge variant="outline" className="rounded-sm text-xs px-2 py-0 h-5">
                 {thread.category}
               </Badge>
@@ -63,11 +63,11 @@ export function ThreadCard({ thread }: ThreadCardProps) {
               )}
             </div>
             <Link to={`/forum/thread/${thread.id}`}>
-              <h3 className="font-medium hover:text-primary transition-colors">
+              <h3 className="font-medium hover:text-primary transition-colors line-clamp-2">
                 {thread.title}
               </h3>
             </Link>
-            <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+            <p className="text-sm text-muted-foreground line-clamp-2 mt-1 hidden sm:block">
               {thread.content}
             </p>
           </div>
@@ -91,8 +91,8 @@ export function ThreadCard({ thread }: ThreadCardProps) {
           ))}
         </div>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <div className="flex items-center gap-4">
+      <CardFooter className="p-4 pt-0 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+        <div className="flex items-center gap-4 w-full sm:w-auto">
           <div className="flex items-center gap-1 text-muted-foreground">
             <Heart className="h-4 w-4" />
             <span className="text-xs">{thread.likes}</span>
@@ -102,7 +102,7 @@ export function ThreadCard({ thread }: ThreadCardProps) {
             <span className="text-xs">{thread.replies}</span>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between w-full sm:w-auto sm:gap-2">
           <Link to={`/profile/${thread.author.id}`} className="text-sm hover:text-primary transition-colors">
             {thread.author.name}
           </Link>

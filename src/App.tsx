@@ -9,6 +9,7 @@ import Marketplace from "./pages/Marketplace";
 import ProductDetail from "./pages/ProductDetail";
 import Dashboard from "./pages/Dashboard";
 import Forum from "./pages/Forum";
+import NewThread from "./pages/NewThread";
 import Projects from "./pages/Projects";
 import ProjectSubmit from "./pages/ProjectSubmit";
 import Login from "./pages/Login";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/marketplace/:id" element={<ProductDetail />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/forum" element={<Forum />} />
+          <Route path="/forum/new-thread" element={<NewThread />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/new" element={<ProjectSubmit />} />
           <Route path="/login" element={<Login />} />

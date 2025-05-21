@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { CategoryList } from '@/components/forum/CategoryList';
 import { ThreadCard } from '@/components/forum/ThreadCard';
@@ -8,64 +8,216 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { mockForumCategories, mockThreads } from '@/services/mockData';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { 
+  Dialog, 
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger 
+} from '@/components/ui/dialog';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Filter, MessageSquare, List, Plus } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Forum = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('recent');
+  const isMobile = useIsMobile();
+  const navigate = useNavigate();
+  
+  // Filter threads based on search query
+  const filteredThreads = mockThreads.filter(thread => 
+    thread.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    thread.content.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  
+  // Sort threads based on active tab
+  const sortedThreads = React.useMemo(() => {
+    switch (activeTab) {
+      case 'popular':
+        return [...filteredThreads].sort((a, b) => b.likes - a.likes);
+      case 'unanswered':
+        return filteredThreads.filter(thread => thread.replies === 0);
+      case 'recent':
+      default:
+        return [...filteredThreads].sort((a, b) => 
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+    }
+  }, [filteredThreads, activeTab]);
+
+  const handleCreateThread = () => {
+    navigate('/forum/new-thread');
+  };
+  
+  // Mobile-optimized action button for creating new threads
+  const MobileActionButton = () => (
+    <div className="fixed right-6 bottom-6 md:hidden">
+      <Button 
+        onClick={handleCreateThread}
+        size="lg"
+        className="rounded-full w-14 h-14 shadow-lg"
+      >
+        <Plus className="h-6 w-6" />
+      </Button>
+    </div>
+  );
   
   return (
     <PageLayout>
       <div className="container py-8">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold mb-4">Forum Komunitas</h1>
+            <h1 className="text-3xl font-bold mb-2">Forum Komunitas</h1>
             <p className="text-muted-foreground max-w-3xl">
               Terhubung dengan sesama petani, peneliti, dan penggemar teknologi pertanian.
               Berbagi pengetahuan, ajukan pertanyaan, dan temukan solusi.
             </p>
           </div>
-          <div>
+          <div className="hidden md:block">
             <Link to="/forum/new-thread">
               <Button className="gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                <Plus className="h-4 w-4" />
                 Diskusi Baru
               </Button>
             </Link>
           </div>
         </div>
         
-        <div className="flex items-center mb-8">
-          <div className="flex-1 max-w-lg">
+        <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+          <div className="w-full md:w-auto md:flex-1 max-w-lg">
             <Input 
               placeholder="Cari diskusi..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full"
             />
           </div>
-          <div className="ml-4">
-            <Tabs defaultValue="recent">
-              <TabsList>
-                <TabsTrigger value="recent">Terbaru</TabsTrigger>
-                <TabsTrigger value="popular">Populer</TabsTrigger>
-                <TabsTrigger value="unanswered">Belum Dijawab</TabsTrigger>
-              </TabsList>
-            </Tabs>
+          <div className="w-full md:w-auto">
+            {isMobile ? (
+              <Drawer>
+                <DrawerTrigger asChild>
+                  <Button variant="outline" className="w-full gap-2">
+                    <Filter className="h-4 w-4" />
+                    Filter & Urutkan
+                  </Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Filter Diskusi</DrawerTitle>
+                    <DrawerDescription>
+                      Atur urutkan dan filter diskusi
+                    </DrawerDescription>
+                  </DrawerHeader>
+                  <div className="px-4">
+                    <div className="space-y-4 mb-4">
+                      <h3 className="font-medium">Urutkan Berdasarkan</h3>
+                      <div className="grid grid-cols-1 gap-2">
+                        <Button 
+                          variant={activeTab === 'recent' ? 'default' : 'outline'}
+                          className="justify-start"
+                          onClick={() => setActiveTab('recent')}
+                        >
+                          Terbaru
+                        </Button>
+                        <Button 
+                          variant={activeTab === 'popular' ? 'default' : 'outline'}
+                          className="justify-start"
+                          onClick={() => setActiveTab('popular')}
+                        >
+                          Populer
+                        </Button>
+                        <Button 
+                          variant={activeTab === 'unanswered' ? 'default' : 'outline'}
+                          className="justify-start"
+                          onClick={() => setActiveTab('unanswered')}
+                        >
+                          Belum Dijawab
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                  <DrawerFooter>
+                    <DrawerClose asChild>
+                      <Button variant="outline">Tutup</Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
+            ) : (
+              <Tabs 
+                defaultValue="recent" 
+                value={activeTab}
+                onValueChange={setActiveTab}
+              >
+                <TabsList>
+                  <TabsTrigger value="recent">Terbaru</TabsTrigger>
+                  <TabsTrigger value="popular">Populer</TabsTrigger>
+                  <TabsTrigger value="unanswered">Belum Dijawab</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            )}
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6 lg:gap-8">
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold mb-4">Diskusi Terbaru</h2>
-            {mockThreads.map(thread => (
-              <ThreadCard key={thread.id} thread={thread} />
-            ))}
-            
-            <div className="flex justify-center mt-8">
-              <Button variant="outline">Muat Lebih Banyak</Button>
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl md:text-2xl font-bold">
+                {activeTab === 'recent' && 'Diskusi Terbaru'}
+                {activeTab === 'popular' && 'Diskusi Populer'}
+                {activeTab === 'unanswered' && 'Diskusi Belum Dijawab'}
+              </h2>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                className="md:hidden"
+                aria-label="Tampilkan sebagai daftar"
+              >
+                <List className="h-5 w-5" />
+              </Button>
             </div>
+            
+            {sortedThreads.length > 0 ? (
+              <div className="space-y-4">
+                {sortedThreads.map(thread => (
+                  <ThreadCard key={thread.id} thread={thread} />
+                ))}
+              </div>
+            ) : (
+              <Card className="flex flex-col items-center justify-center p-8 text-center">
+                <MessageSquare className="h-12 w-12 text-muted-foreground mb-4" />
+                <h3 className="text-lg font-medium mb-1">Tidak ada diskusi ditemukan</h3>
+                <p className="text-muted-foreground mb-4">
+                  Tidak ada diskusi yang cocok dengan filter atau pencarian Anda.
+                </p>
+                <Button onClick={handleCreateThread}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Mulai Diskusi Baru
+                </Button>
+              </Card>
+            )}
+            
+            {sortedThreads.length > 0 && (
+              <div className="flex justify-center mt-8">
+                <Button variant="outline">Muat Lebih Banyak</Button>
+              </div>
+            )}
           </div>
           
-          <div className="space-y-6">
+          {/* Sidebar - Hidden on mobile, shown inline at bottom on tablet, sidebar on desktop */}
+          <div className="space-y-6 order-first lg:order-last">
             <Card>
               <CardHeader>
                 <CardTitle>Kategori</CardTitle>
@@ -155,6 +307,7 @@ const Forum = () => {
           </div>
         </div>
       </div>
+      <MobileActionButton />
     </PageLayout>
   );
 };
