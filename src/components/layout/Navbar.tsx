@@ -30,9 +30,9 @@ export function Navbar() {
   const navLinks = [
     { path: '/', label: 'Beranda', icon: Home },
     { path: '/marketplace', label: 'Pasar', icon: ShoppingBag },
-    { path: '/dashboard', label: 'Dashboard IoT', icon: BarChart },
+    { path: '/dashboard', label: 'Dasbor IoT', icon: BarChart },
     { path: '/forum', label: 'Forum Komunitas', icon: MessageSquare },
-    { path: '/projects', label: 'Open Source', icon: Code },
+    { path: '/projects', label: 'Sumber Terbuka', icon: Code },
     { path: '/seller', label: 'Dasbor Penjual', icon: Store },
   ];
   
