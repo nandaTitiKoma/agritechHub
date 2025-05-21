@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
@@ -13,6 +12,7 @@ import { Heart, ShoppingCart, Star, Check, Truck, ArrowLeft } from 'lucide-react
 import { Product, ProductCard } from '@/components/marketplace/ProductCard';
 import { getProductById, mockProducts } from '@/services/mockData';
 import { toast } from 'sonner';
+import { formatRupiah } from '@/lib/utils';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -105,7 +105,7 @@ const ProductDetail = () => {
                 </span>
               </div>
               
-              <div className="text-2xl font-bold mb-4">${product.price.toFixed(2)}</div>
+              <div className="text-2xl font-bold mb-4">{formatRupiah(product.price * 15000)}</div>
               
               <p className="text-muted-foreground mb-6">
                 This advanced agricultural technology helps farmers optimize their operations, reduce waste, and increase yields. 

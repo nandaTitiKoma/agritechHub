@@ -26,11 +26,14 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { CheckCircle2, ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { formatRupiah } from '@/lib/utils';
+import { useCart } from '@/contexts/CartContext';
 
 const Checkout = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
+  const { items: cartItems } = useCart();
   
   const form = useForm({
     defaultValues: {
@@ -43,6 +46,18 @@ const Checkout = () => {
       notes: '',
     },
   });
+  
+  // Calculate order totals
+  const calculateSubtotal = () => {
+    return cartItems?.reduce((total, item) => {
+      return total + (item.product.price * 15000 * item.quantity);
+    }, 0) || 0;
+  };
+  
+  const subtotal = calculateSubtotal();
+  const shipping = 75000;
+  const tax = subtotal * 0.1;
+  const total = subtotal + shipping + tax;
   
   const onSubmit = (data: any) => {
     setIsSubmitting(true);
@@ -233,21 +248,21 @@ const Checkout = () => {
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex justify-between">
-                    <span>Subtotal (3 item)</span>
-                    <span>Rp2.350.000</span>
+                    <span>Subtotal ({cartItems?.reduce((sum, item) => sum + item.quantity, 0) || 0} item)</span>
+                    <span>{formatRupiah(subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Pengiriman</span>
-                    <span>Rp75.000</span>
+                    <span>{formatRupiah(shipping)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Pajak</span>
-                    <span>Rp235.000</span>
+                    <span>{formatRupiah(tax)}</span>
                   </div>
                   <Separator />
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
-                    <span>Rp2.660.000</span>
+                    <span>{formatRupiah(total)}</span>
                   </div>
                 </div>
                 

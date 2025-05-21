@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, Star, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useCart } from '@/contexts/CartContext';
+import { formatRupiah } from '@/lib/utils';
 
 export interface Product {
   id: string;
@@ -86,7 +87,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.title}
           </h3>
         </Link>
-        <div className="mt-2 font-semibold">Rp{(product.price * 15000).toLocaleString('id-ID')}</div>
+        <div className="mt-2 font-semibold">{formatRupiah(product.price * 15000)}</div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button 

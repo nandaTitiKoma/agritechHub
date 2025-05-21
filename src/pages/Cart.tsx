@@ -15,6 +15,7 @@ import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { formatRupiah } from '@/lib/utils';
 
 const CartPage = () => {
   const { toast } = useToast();
@@ -68,7 +69,7 @@ const CartPage = () => {
               </h3>
             </Link>
             <div className="text-xs text-muted-foreground mb-1">{product.category}</div>
-            <div className="font-semibold text-sm">Rp{(product.price * 15000).toLocaleString('id-ID')}</div>
+            <div className="font-semibold text-sm">{formatRupiah(product.price * 15000)}</div>
             
             <div className="flex justify-between items-center mt-3">
               <div className="flex items-center space-x-2">
@@ -142,7 +143,7 @@ const CartPage = () => {
                             </h3>
                           </Link>
                           <div className="text-sm text-muted-foreground mb-2">{product.category}</div>
-                          <div className="font-semibold">Rp{(product.price * 15000).toLocaleString('id-ID')}</div>
+                          <div className="font-semibold">{formatRupiah(product.price * 15000)}</div>
                           
                           <div className="flex justify-between items-center mt-4">
                             <div className="flex items-center space-x-2">
@@ -196,20 +197,20 @@ const CartPage = () => {
                   <div className="space-y-4">
                     <div className="flex justify-between">
                       <span>Subtotal ({cartItems.reduce((sum, item) => sum + item.quantity, 0)} item)</span>
-                      <span>Rp{subtotal.toLocaleString('id-ID')}</span>
+                      <span>{formatRupiah(subtotal)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Pengiriman</span>
-                      <span>Rp{shipping.toLocaleString('id-ID')}</span>
+                      <span>{formatRupiah(shipping)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Pajak (10%)</span>
-                      <span>Rp{tax.toLocaleString('id-ID')}</span>
+                      <span>{formatRupiah(tax)}</span>
                     </div>
                     <Separator />
                     <div className="flex justify-between font-bold">
                       <span>Total</span>
-                      <span>Rp{total.toLocaleString('id-ID')}</span>
+                      <span>{formatRupiah(total)}</span>
                     </div>
                   </div>
                 </CardContent>

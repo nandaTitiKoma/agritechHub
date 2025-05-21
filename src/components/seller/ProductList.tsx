@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
@@ -7,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Edit, Trash2, X } from 'lucide-react';
 import { ProductForm } from './ProductForm';
 import { Input } from '@/components/ui/input';
+import { formatRupiah } from '@/lib/utils';
 
 // Sample data for products
 const mockProducts = [
@@ -62,15 +62,6 @@ export const ProductList = () => {
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Format price to IDR currency
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('id-ID', {
-      style: 'currency',
-      currency: 'IDR',
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
-
   // Handle delete product
   const handleDelete = (id: string) => {
     if (window.confirm('Anda yakin ingin menghapus produk ini?')) {
@@ -116,7 +107,7 @@ export const ProductList = () => {
               filteredProducts.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell className="font-medium">{product.name}</TableCell>
-                  <TableCell>{formatPrice(product.price)}</TableCell>
+                  <TableCell>{formatRupiah(product.price)}</TableCell>
                   <TableCell>{product.stock} unit</TableCell>
                   <TableCell>{product.category}</TableCell>
                   <TableCell>
