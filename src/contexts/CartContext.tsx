@@ -27,9 +27,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       try {
-        setItems(JSON.parse(savedCart));
+        const parsedCart = JSON.parse(savedCart);
+        // Ensure that parsedCart is an array
+        if (Array.isArray(parsedCart)) {
+          setItems(parsedCart);
+        } else {
+          console.error('Saved cart is not an array:', parsedCart);
+          setItems([]);
+        }
       } catch (error) {
         console.error('Error parsing cart data:', error);
+        setItems([]);
       }
     }
   }, []);
@@ -78,6 +86,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const getCartItemCount = () => {
+    // Make sure items is an array before calling reduce
+    if (!Array.isArray(items)) {
+      console.error('items is not an array:', items);
+      return 0;
+    }
     return items.reduce((total, item) => total + item.quantity, 0);
   };
 
