@@ -36,7 +36,7 @@ const Index = () => {
           </div>
           <div className="lg:w-1/2 relative">
             <img 
-              src="https://images.unsplash.com/photo-1469474968028-56623f02e42e" 
+              src="https://images.pexels.com/photos/30733226/pexels-photo-30733226.jpeg" 
               alt="Pertanian Pintar" 
               className="rounded-xl shadow-xl w-full" 
             />

@@ -13,7 +13,7 @@ export const mockProducts: Product[] = [
     id: "smart-soil-sensor",
     title: "Smart Soil Moisture & Nutrient Sensor",
     price: 149.99,
-    image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843",
+    image: "https://images.unsplash.com/photo-1687477850274-819a02796d0b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "Soil Sensors",
     rating: 4.8,
     reviewCount: 124,
@@ -25,7 +25,7 @@ export const mockProducts: Product[] = [
     id: "automated-irrigation",
     title: "Automated Precision Irrigation System",
     price: 299.99,
-    image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07",
+    image: "https://images.unsplash.com/photo-1738598665698-7fd7af4b5e0c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "Irrigation Systems",
     rating: 4.6,
     reviewCount: 87,
@@ -36,7 +36,7 @@ export const mockProducts: Product[] = [
     id: "crop-monitoring-drone",
     title: "Agricultural Drone with Multispectral Camera",
     price: 1299.99,
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    image: "https://images.unsplash.com/photo-1626354511623-1710258738d1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "Drones & Robotics",
     rating: 4.9,
     reviewCount: 42,
@@ -46,7 +46,7 @@ export const mockProducts: Product[] = [
     id: "greenhouse-controller",
     title: "Smart Greenhouse Climate Controller",
     price: 249.99,
-    image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9",
+    image: "https://images.unsplash.com/photo-1700022371343-e8b23949d014?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     category: "Smart Greenhouses",
     rating: 4.7,
     reviewCount: 63,
@@ -56,7 +56,7 @@ export const mockProducts: Product[] = [
     id: "livestock-tracker",
     title: "Livestock Health Monitoring System",
     price: 399.99,
-    image: "https://images.unsplash.com/photo-1517022812141-23620dba5c23",
+    image: "https://images.unsplash.com/photo-1625497110777-3438c08f7821?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fExpdmVzdG9jayUyMEhlYWx0aCUyME1vbml0b3JpbmclMjBTeXN0ZW18ZW58MHx8MHx8fDA%3D",
     category: "Livestock Monitoring",
     rating: 4.5,
     reviewCount: 31,
@@ -66,7 +66,7 @@ export const mockProducts: Product[] = [
     id: "harvest-robot",
     title: "Autonomous Harvesting Robot Platform",
     price: 4999.99,
-    image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a",
+    image: "https://www.parvalux.com/app/uploads/fly-images/17652/Robots_Motors_in_Agriculture-1500x830-f50_50.jpg",
     category: "Drones & Robotics",
     rating: 4.3,
     reviewCount: 12,
@@ -76,7 +76,7 @@ export const mockProducts: Product[] = [
     id: "weather-station",
     title: "Professional Farm Weather Station",
     price: 349.99,
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
+    image: "https://www.renkeer.com/wp-content/uploads/2021/06/weather-station-3.jpg",
     category: "Weather Stations",
     rating: 4.7,
     reviewCount: 89,
@@ -86,7 +86,7 @@ export const mockProducts: Product[] = [
     id: "solar-pump",
     title: "Solar-Powered Water Pump System",
     price: 599.99,
-    image: "https://images.unsplash.com/photo-1498936178812-4b2e558d2937",
+    image: "https://static.wixstatic.com/media/b7b329_2a51aecc989f4e3285a6ad54ebb3cdeb~mv2.jpg/v1/fill/w_718,h_432,al_c,lg_1,q_80,enc_avif,quality_auto/b7b329_2a51aecc989f4e3285a6ad54ebb3cdeb~mv2.jpg",
     category: "Energy Solutions",
     rating: 4.6,
     reviewCount: 34
@@ -402,7 +402,7 @@ export const mockProjects: Project[] = [
     forks: 48,
     likes: 92,
     license: "MIT",
-    thumbnail: "https://images.unsplash.com/photo-1518495973542-4542c06a5843"
+    thumbnail: "https://images.unsplash.com/photo-1714588862918-1490f23f3e56?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fE9wZW4lMjBGYXJtJTIwU2Vuc29yJTIwTmV0d29ya3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     id: "aquaponics-controller",
@@ -421,7 +421,7 @@ export const mockProjects: Project[] = [
     forks: 32,
     likes: 67,
     license: "GPL-3.0",
-    thumbnail: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07"
+    thumbnail: "https://cdn.shopify.com/s/files/1/2307/4917/files/Water-Temperature.Monitor-in-Aquaponics.jpg?v=1738413079"
   },
   {
     id: "greenhouse-controller",
@@ -440,7 +440,7 @@ export const mockProjects: Project[] = [
     forks: 76,
     likes: 129,
     license: "Apache-2.0",
-    thumbnail: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9"
+    thumbnail: "https://www.raspberry-pi-geek.com/var/rpi/storage/images/archive/2014/07/building-a-raspberry-pi-greenhouse/figure-2/13036-1-eng-US/Figure-2_large.png"
   },
   {
     id: "field-mapping-drone",
@@ -459,7 +459,7 @@ export const mockProjects: Project[] = [
     forks: 42,
     likes: 103,
     license: "MIT",
-    thumbnail: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
+    thumbnail: "https://pilotinstitute.com/wp-content/uploads/2020/09/drone-mapping.jpeg"
   },
   {
     id: "soil-analysis-kit",
@@ -478,7 +478,7 @@ export const mockProjects: Project[] = [
     forks: 54,
     likes: 89,
     license: "CC-BY-SA",
-    thumbnail: "https://images.unsplash.com/photo-1493962853295-0fd70327578a"
+    thumbnail: "https://cdn11.bigcommerce.com/s-j602wc6a/images/stencil/1280x1280/products/6724/23234/N883gehHkyqCIH5H7jeoT2zk4cYDIXj3ZBGFIngACuHtLV7R7LkelVbhgUATD3Z1__47708.1712267676.jpg?c=2"
   },
   {
     id: "cattle-tracker",
@@ -497,7 +497,7 @@ export const mockProjects: Project[] = [
     forks: 23,
     likes: 62,
     license: "MIT",
-    thumbnail: "https://images.unsplash.com/photo-1517022812141-23620dba5c23"
+    thumbnail: "https://www.mokolora.com/wp-content/uploads/2022/06/How-LoRaWAN-Powers-Ranch-Livestock-Tracking-System.webp"
   }
 ];
 
