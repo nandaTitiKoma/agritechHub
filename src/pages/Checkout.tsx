@@ -24,7 +24,8 @@ import {
   CardTitle 
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ChevronLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
   const { toast } = useToast();
@@ -60,18 +61,18 @@ const Checkout = () => {
   if (orderComplete) {
     return (
       <PageLayout>
-        <div className="container max-w-4xl py-12">
+        <div className="container max-w-4xl py-8 px-4 md:px-6 md:py-12">
           <Card className="border-green-200 bg-green-50">
             <CardContent className="pt-6">
               <div className="text-center space-y-4">
-                <CheckCircle2 className="mx-auto h-16 w-16 text-green-500" />
-                <h1 className="text-2xl font-bold">Pesanan Berhasil!</h1>
+                <CheckCircle2 className="mx-auto h-12 w-12 md:h-16 md:w-16 text-green-500" />
+                <h1 className="text-xl md:text-2xl font-bold">Pesanan Berhasil!</h1>
                 <p className="text-muted-foreground max-w-md mx-auto">
                   Terima kasih telah berbelanja di AgriTech Hub. Anda akan menerima email konfirmasi dengan rincian pesanan Anda.
                 </p>
                 <div className="pt-4">
                   <Button asChild>
-                    <a href="/marketplace">Lanjutkan Belanja</a>
+                    <Link to="/marketplace">Lanjutkan Belanja</Link>
                   </Button>
                 </div>
               </div>
@@ -84,10 +85,17 @@ const Checkout = () => {
   
   return (
     <PageLayout>
-      <div className="container py-8">
-        <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+      <div className="container py-4 md:py-8">
+        <div className="flex items-center gap-2 mb-4">
+          <Link to="/cart" className="text-muted-foreground hover:text-primary flex items-center gap-1">
+            <ChevronLeft className="h-4 w-4" />
+            <span>Kembali ke Keranjang</span>
+          </Link>
+        </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8">
+        <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-8">Checkout</h1>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6 md:gap-8">
           {/* Checkout Form */}
           <div>
             <Card>
@@ -218,7 +226,7 @@ const Checkout = () => {
           
           {/* Order Summary */}
           <div>
-            <Card>
+            <Card className="lg:sticky lg:top-20">
               <CardHeader>
                 <CardTitle>Ringkasan Pesanan</CardTitle>
               </CardHeader>
@@ -246,22 +254,22 @@ const Checkout = () => {
                 <div className="mt-6 space-y-4">
                   <h3 className="font-medium">Metode Pembayaran</h3>
                   <div className="grid grid-cols-2 gap-2">
-                    <Button variant="outline" className="justify-start">
+                    <Button variant="outline" className="justify-start text-xs md:text-sm">
                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/1200px-Visa_Inc._logo.svg.png" 
-                        alt="Visa" className="h-5 mr-2" />
+                        alt="Visa" className="h-4 md:h-5 mr-2" />
                       Visa
                     </Button>
-                    <Button variant="outline" className="justify-start">
+                    <Button variant="outline" className="justify-start text-xs md:text-sm">
                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" 
-                        alt="Mastercard" className="h-5 mr-2" />
+                        alt="Mastercard" className="h-4 md:h-5 mr-2" />
                       Mastercard
                     </Button>
-                    <Button variant="outline" className="justify-start">
+                    <Button variant="outline" className="justify-start text-xs md:text-sm">
                       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" 
-                        alt="PayPal" className="h-5 mr-2" />
+                        alt="PayPal" className="h-4 md:h-5 mr-2" />
                       PayPal
                     </Button>
-                    <Button variant="outline" className="justify-start">
+                    <Button variant="outline" className="justify-start text-xs md:text-sm">
                       Transfer Bank
                     </Button>
                   </div>

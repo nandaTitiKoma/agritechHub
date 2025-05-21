@@ -66,13 +66,13 @@ export function Navbar() {
         </div>
         
         {!isMobile && (
-          <nav className="mx-4 flex items-center space-x-1 lg:space-x-2">
+          <nav className="mx-4 flex items-center space-x-1 lg:space-x-2 overflow-x-auto scrollbar-hide">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className={cn(
-                  "nav-link flex items-center gap-1.5 text-sm",
+                  "nav-link flex items-center gap-1.5 text-sm whitespace-nowrap",
                   isActivePath(link.path) && "nav-link-active"
                 )}
               >

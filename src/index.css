@@ -72,6 +72,10 @@
     @apply border-border;
   }
 
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -82,23 +86,48 @@
   }
 
   h1 {
-    @apply text-4xl lg:text-5xl;
+    @apply text-3xl md:text-4xl lg:text-5xl;
   }
 
   h2 {
-    @apply text-3xl lg:text-4xl;
+    @apply text-2xl md:text-3xl lg:text-4xl;
   }
 
   h3 {
-    @apply text-2xl lg:text-3xl;
+    @apply text-xl md:text-2xl lg:text-3xl;
   }
 
   h4 {
-    @apply text-xl lg:text-2xl;
+    @apply text-lg md:text-xl lg:text-2xl;
   }
 
   h5 {
-    @apply text-lg lg:text-xl;
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  /* Improve touch targets on mobile */
+  button, 
+  a, 
+  [role="button"],
+  input,
+  select,
+  textarea {
+    @apply touch-manipulation;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
 
@@ -122,5 +151,33 @@
 
   .nav-link-active {
     @apply text-primary font-medium;
+  }
+
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6;
+  }
+
+  .responsive-grid-tight {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4;
+  }
+
+  .responsive-grid-wide {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+  }
+
+  .responsive-flex {
+    @apply flex flex-col sm:flex-row items-start gap-4 md:gap-6;
+  }
+
+  .mobile-full {
+    @apply -mx-4 sm:mx-0;
+  }
+
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  .card-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6;
   }
 }
