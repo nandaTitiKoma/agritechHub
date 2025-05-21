@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heart, ShoppingCart, Star, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useCart } from '@/contexts/CartContext';
 
 export interface Product {
   id: string;
@@ -26,10 +27,10 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { toast } = useToast();
-  const [isInCart, setIsInCart] = useState(false);
+  const { addToCart, isInCart } = useCart();
   
   const handleAddToCart = () => {
-    setIsInCart(true);
+    addToCart(product);
     toast({
       title: "Berhasil ditambahkan ke keranjang",
       description: `${product.title} telah ditambahkan ke keranjang belanja Anda.`,
@@ -91,10 +92,10 @@ export function ProductCard({ product }: ProductCardProps) {
         <Button 
           className="w-full gap-2" 
           onClick={handleAddToCart}
-          disabled={isInCart}
-          variant={isInCart ? "outline" : "default"}
+          disabled={isInCart(product.id)}
+          variant={isInCart(product.id) ? "outline" : "default"}
         >
-          {isInCart ? (
+          {isInCart(product.id) ? (
             <>
               <Check className="h-4 w-4" />
               Ditambahkan

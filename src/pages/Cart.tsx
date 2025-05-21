@@ -3,7 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
 import {
   Card,
   CardContent,
@@ -12,17 +11,13 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { mockProducts } from '@/services/mockData';
 import { Minus, Plus, Trash2, ShoppingCart } from 'lucide-react';
+import { useCart } from '@/contexts/CartContext';
+import { useToast } from '@/hooks/use-toast';
 
 const CartPage = () => {
   const { toast } = useToast();
-  const [cartItems, setCartItems] = React.useState(
-    mockProducts.slice(0, 3).map(product => ({
-      product,
-      quantity: 1
-    }))
-  );
+  const { items: cartItems, updateQuantity, removeFromCart } = useCart();
   
   const calculateSubtotal = () => {
     return cartItems.reduce((total, item) => {
@@ -30,20 +25,17 @@ const CartPage = () => {
     }, 0);
   };
   
-  const updateQuantity = (productId: string, amount: number) => {
-    setCartItems(prevItems => 
-      prevItems.map(item => {
-        if (item.product.id === productId) {
-          const newQuantity = Math.max(1, item.quantity + amount);
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      })
-    );
+  const handleQuantityUpdate = (productId: string, amount: number) => {
+    const item = cartItems.find(item => item.product.id === productId);
+    if (item) {
+      const newQuantity = item.quantity + amount;
+      if (newQuantity < 1) return; // Don't allow quantities below 1
+      updateQuantity(productId, newQuantity);
+    }
   };
   
-  const removeItem = (productId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.product.id !== productId));
+  const handleRemoveItem = (productId: string) => {
+    removeFromCart(productId);
     toast({
       title: "Item dihapus",
       description: "Item telah dihapus dari keranjang Anda.",
@@ -99,7 +91,7 @@ const CartPage = () => {
                               size="icon" 
                               variant="outline" 
                               className="h-8 w-8"
-                              onClick={() => updateQuantity(product.id, -1)}
+                              onClick={() => handleQuantityUpdate(product.id, -1)}
                             >
                               <Minus className="h-3 w-3" />
                             </Button>
@@ -108,7 +100,7 @@ const CartPage = () => {
                               size="icon" 
                               variant="outline" 
                               className="h-8 w-8"
-                              onClick={() => updateQuantity(product.id, 1)}
+                              onClick={() => handleQuantityUpdate(product.id, 1)}
                             >
                               <Plus className="h-3 w-3" />
                             </Button>
@@ -117,7 +109,7 @@ const CartPage = () => {
                             variant="ghost" 
                             size="sm" 
                             className="text-red-500 hover:text-red-700"
-                            onClick={() => removeItem(product.id)}
+                            onClick={() => handleRemoveItem(product.id)}
                           >
                             <Trash2 className="h-4 w-4 mr-1" />
                             Hapus

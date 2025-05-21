@@ -18,11 +18,14 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useCart } from '@/contexts/CartContext';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const isMobile = useIsMobile();
+  const { getCartItemCount } = useCart();
+  const cartItemCount = getCartItemCount();
   
   const navLinks = [
     { path: '/', label: 'Beranda', icon: Home },
@@ -88,9 +91,11 @@ export function Navbar() {
           <Link to="/cart">
             <Button variant="ghost" size="icon" className="relative" aria-label="Keranjang">
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 bg-eco-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                3
-              </span>
+              {cartItemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-eco-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
             </Button>
           </Link>
           
