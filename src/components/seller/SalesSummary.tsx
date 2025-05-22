@@ -3,7 +3,6 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from 'recharts';
 
-// Sample data for the sales chart
 const salesData = [
   { name: 'Min', penjualan: 1200000 },
   { name: 'Sen', penjualan: 1950000 },
@@ -15,7 +14,6 @@ const salesData = [
 ];
 
 export const SalesSummary = () => {
-  // Format currency
   const formatRupiah = (value: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
@@ -24,7 +22,6 @@ export const SalesSummary = () => {
     }).format(value);
   };
 
-  // Calculate total sales
   const totalSales = salesData.reduce((sum, day) => sum + day.penjualan, 0);
   
   return (

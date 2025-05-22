@@ -40,12 +40,10 @@ export function SensorChart({
   height = 300,
   className,
 }: SensorChartProps) {
-  // Format tooltip value
   const formatValue = (value: number) => {
     return `${value} ${unit}`;
   };
 
-  // Custom tooltip
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (

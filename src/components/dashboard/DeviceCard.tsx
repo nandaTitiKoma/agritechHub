@@ -30,7 +30,6 @@ interface DeviceCardProps {
 }
 
 export function DeviceCard({ device, onSelect, isSelected }: DeviceCardProps) {
-  // Helper function to render the status badge
   const renderStatusBadge = (status: Device['status']) => {
     switch (status) {
       case 'online':
@@ -46,7 +45,6 @@ export function DeviceCard({ device, onSelect, isSelected }: DeviceCardProps) {
     }
   };
   
-  // Helper function to get device icon
   const getDeviceIcon = () => {
     switch (device.type) {
       case 'soil':

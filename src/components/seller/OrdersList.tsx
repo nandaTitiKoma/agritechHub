@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-// Sample data for orders
+
 const mockOrders = [
   {
     id: 'ORD-001',
@@ -52,7 +52,6 @@ const mockOrders = [
   },
 ];
 
-// Status color mapping
 const statusColors: Record<string, string> = {
   pending: 'bg-yellow-50 text-yellow-600',
   processing: 'bg-blue-50 text-blue-600',
@@ -61,7 +60,7 @@ const statusColors: Record<string, string> = {
   cancelled: 'bg-red-50 text-red-600',
 };
 
-// Status label mapping
+
 const statusLabels: Record<string, string> = {
   pending: 'Menunggu',
   processing: 'Diproses',
@@ -75,7 +74,6 @@ export const OrdersList = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const isMobile = useIsMobile();
   
-  // Filter orders based on search term and status
   const filteredOrders = mockOrders.filter(order => {
     const matchesSearch = order.customer.toLowerCase().includes(searchTerm.toLowerCase()) || 
                          order.id.toLowerCase().includes(searchTerm.toLowerCase());
@@ -84,7 +82,6 @@ export const OrdersList = () => {
     return matchesSearch && matchesStatus;
   });
 
-  // Format date
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { 
       year: 'numeric', 
@@ -94,7 +91,6 @@ export const OrdersList = () => {
     return new Date(dateString).toLocaleDateString('id-ID', options);
   };
 
-  // Format price to IDR currency
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
@@ -103,7 +99,6 @@ export const OrdersList = () => {
     }).format(price);
   };
 
-  // Mobile order card view
   const MobileOrderCard = ({ order }: { order: typeof mockOrders[0] }) => (
     <Card className="mb-4 overflow-hidden">
       <div className="p-4 border-b flex justify-between items-center">

@@ -8,7 +8,6 @@ import { ProductForm } from './ProductForm';
 import { Input } from '@/components/ui/input';
 import { formatRupiah } from '@/lib/utils';
 
-// Sample data for products
 const mockProducts = [
   {
     id: '1',
