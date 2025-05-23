@@ -14,9 +14,9 @@ export function PageLayout({ children }: PageLayoutProps) {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col overflow-x-hidden">
       <Navbar />
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full overflow-x-hidden">
         {children}
       </main>
       <Footer />

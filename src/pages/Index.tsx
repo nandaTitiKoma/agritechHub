@@ -29,7 +29,7 @@ const Index = () => {
                 </Button>
               </Link>
               <Link to="/dashboard">
-                <Button size="lg" variant="outline" className="transition-transform hover:scale-105">
+                <Button size="lg" variant="outline" className="border-gray-400 text-gray-700 transition-transform hover:scale-105 hover:bg-gray-100 hover:text-gray-900">
                   Lihat Dashboard IoT
                 </Button>
               </Link>
@@ -180,7 +180,7 @@ const Index = () => {
               </Button>
             </Link>
             <Link to="/marketplace">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 transition-transform hover:scale-105">
+              <Button size="lg" variant="outline" className="border-white text-white font-semibold hover:bg-white/20 transition-transform hover:scale-105">
                 Jelajahi Teknologi
               </Button>
             </Link>

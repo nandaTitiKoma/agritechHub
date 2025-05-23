@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { DeviceCard } from '@/components/dashboard/DeviceCard';
@@ -7,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { mockDevices, generateSensorData } from '@/services/mockData';
 
 const Dashboard = () => {
@@ -23,9 +23,9 @@ const Dashboard = () => {
   
   return (
     <PageLayout>
-      <div className="container py-8">
+      <div className="container py-8 px-4 md:px-6 overflow-x-hidden">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">Dashboard IoT</h1>
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">Dashboard IoT</h1>
           <p className="text-muted-foreground max-w-3xl">
             Pantau perangkat pertanian terhubung Anda secara real-time. Lihat data sensor, 
             periksa status perangkat, dan terima peringatan saat perhatian diperlukan.
@@ -34,7 +34,7 @@ const Dashboard = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
           {/* Devices Sidebar */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             <div className="flex items-center gap-2 mb-4">
               <Input placeholder="Cari perangkat..." className="flex-1" />
               <Button variant="outline" size="icon">
@@ -42,16 +42,18 @@ const Dashboard = () => {
               </Button>
             </div>
             
-            <div className="space-y-3">
-              {mockDevices.map(device => (
-                <DeviceCard 
-                  key={device.id} 
-                  device={device} 
-                  onSelect={setSelectedDeviceId}
-                  isSelected={device.id === selectedDeviceId}
-                />
-              ))}
-            </div>
+            <ScrollArea className="h-[calc(100vh-300px)] pb-4">
+              <div className="space-y-3 pr-4">
+                {mockDevices.map(device => (
+                  <DeviceCard 
+                    key={device.id} 
+                    device={device} 
+                    onSelect={setSelectedDeviceId}
+                    isSelected={device.id === selectedDeviceId}
+                  />
+                ))}
+              </div>
+            </ScrollArea>
             
             <Button className="w-full mt-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
@@ -60,27 +62,27 @@ const Dashboard = () => {
           </div>
           
           {/* Main Dashboard Area */}
-          <div className="space-y-6">
+          <div className="space-y-6 overflow-x-hidden">
             {selectedDevice ? (
               <>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
                   <div>
-                    <h2 className="text-2xl font-bold">{selectedDevice.name}</h2>
-                    <p className="text-muted-foreground">
+                    <h2 className="text-xl md:text-2xl font-bold">{selectedDevice.name}</h2>
+                    <p className="text-muted-foreground text-sm">
                       {selectedDevice.location} • Terakhir diperbarui: {selectedDevice.lastUpdated}
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-2">
-                    <Tabs defaultValue="week" onValueChange={(value) => setTimeRange(value as any)}>
-                      <TabsList>
-                        <TabsTrigger value="day">24 Jam</TabsTrigger>
-                        <TabsTrigger value="week">Minggu</TabsTrigger>
-                        <TabsTrigger value="month">Bulan</TabsTrigger>
+                  <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
+                    <Tabs defaultValue="week" onValueChange={(value) => setTimeRange(value as any)} className="w-full sm:w-auto">
+                      <TabsList className="w-full sm:w-auto">
+                        <TabsTrigger value="day" className="flex-1 sm:flex-initial">24 Jam</TabsTrigger>
+                        <TabsTrigger value="week" className="flex-1 sm:flex-initial">Minggu</TabsTrigger>
+                        <TabsTrigger value="month" className="flex-1 sm:flex-initial">Bulan</TabsTrigger>
                       </TabsList>
                     </Tabs>
                     
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" className="w-full sm:w-auto mt-2 sm:mt-0">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                       Pengaturan
                     </Button>
@@ -88,14 +90,14 @@ const Dashboard = () => {
                 </div>
                 
                 {/* Sensor Overview */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                   {selectedDevice.readings.map((reading, idx) => (
                     <Card key={idx}>
-                      <CardContent className="pt-6">
-                        <div className="text-sm text-muted-foreground mb-1">
+                      <CardContent className="pt-4 md:pt-6">
+                        <div className="text-xs sm:text-sm text-muted-foreground mb-1">
                           {reading.type}
                         </div>
-                        <div className="text-2xl font-semibold flex items-end gap-1">
+                        <div className="text-lg md:text-2xl font-semibold flex items-end gap-1">
                           {reading.value}
                           <span className="text-xs text-muted-foreground">
                             {reading.unit}
@@ -107,7 +109,7 @@ const Dashboard = () => {
                 </div>
                 
                 {/* Sensor Charts */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 overflow-x-hidden">
                   {selectedDevice.type === 'soil' && (
                     <>
                       <SensorChart
@@ -284,14 +286,14 @@ const Dashboard = () => {
                 
                 {/* Additional Control Card */}
                 <Card>
-                  <CardHeader>
+                  <CardHeader className="pb-2">
                     <CardTitle>Kontrol Perangkat</CardTitle>
                     <CardDescription>
                       Kelola pengaturan dan operasi perangkat
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                       <Button variant="outline" className="justify-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                         Jadwalkan Operasi

@@ -33,17 +33,17 @@ const Projects = () => {
   return (
     <PageLayout>
       <div className="container py-8">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold mb-4">Proyek Open Source</h1>
+            <h1 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">Proyek Open Source</h1>
             <p className="text-muted-foreground max-w-3xl">
               Jelajahi dan berkontribusi pada proyek teknologi pertanian yang dikembangkan komunitas.
               Temukan desain perangkat keras, kode perangkat lunak, dan dokumentasi untuk solusi mandiri.
             </p>
           </div>
-          <div>
+          <div className="mt-2 sm:mt-0">
             <Link to="/projects/new">
-              <Button className="gap-2">
+              <Button className="gap-2 w-full sm:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
                 Kirim Proyek
               </Button>
