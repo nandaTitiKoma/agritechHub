@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PageLayout } from '@/components/layout/PageLayout';
@@ -62,20 +63,21 @@ const ProductDetail = () => {
   
   return (
     <PageLayout>
-      <div className="container py-8">
-        <div className="mb-6">
+      <div className="container py-4 md:py-8 px-4 sm:px-6 md:px-8">
+        <div className="mb-4 md:mb-6">
           <Link 
             to="/marketplace" 
             className="text-muted-foreground hover:text-foreground inline-flex items-center transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Marketplace
+            <span className="text-sm md:text-base">Back to Marketplace</span>
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        {/* Product main section - Responsive grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-12">
           {/* Product Image/3D Viewer */}
-          <div>
+          <div className="w-full">
             <ProductViewer 
               imageUrl={product.image} 
               has3DModel={product.is3D || false}
@@ -83,57 +85,57 @@ const ProductDetail = () => {
           </div>
           
           {/* Product Details */}
-          <div>
-            <div className="mb-4">
-              <Badge variant="outline" className="mb-3">
+          <div className="mt-4 md:mt-0">
+            <div className="space-y-4">
+              <Badge variant="outline" className="mb-2">
                 {product.category}
               </Badge>
-              <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold">{product.title}</h1>
               
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-2">
                 <div className="flex items-center">
                   {Array(5).fill(0).map((_, i) => (
                     <Star 
                       key={i} 
-                      className="h-4 w-4 text-amber-500" 
+                      className="h-3 w-3 md:h-4 md:w-4 text-amber-500" 
                       fill={i < Math.floor(product.rating) ? "currentColor" : "none"} 
                     />
                   ))}
                 </div>
-                <span className="text-sm text-muted-foreground">
+                <span className="text-xs md:text-sm text-muted-foreground">
                   {product.rating} ({product.reviewCount} reviews)
                 </span>
               </div>
               
-              <div className="text-2xl font-bold mb-4">{formatRupiah(product.price * 15000)}</div>
+              <div className="text-xl md:text-2xl font-bold">{formatRupiah(product.price * 15000)}</div>
               
-              <p className="text-muted-foreground mb-6">
+              <p className="text-sm md:text-base text-muted-foreground">
                 This advanced agricultural technology helps farmers optimize their operations, reduce waste, and increase yields. 
                 Designed with sustainability in mind, it integrates seamlessly with existing farm systems.
               </p>
               
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="h-4 w-4 text-eco-600" />
+              <div className="space-y-2 md:space-y-3">
+                <div className="flex items-center gap-2 text-xs md:text-sm">
+                  <Check className="h-3 w-3 md:h-4 md:w-4 text-eco-600 flex-shrink-0" />
                   <span>Free shipping on orders over $500</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="h-4 w-4 text-eco-600" />
+                <div className="flex items-center gap-2 text-xs md:text-sm">
+                  <Check className="h-3 w-3 md:h-4 md:w-4 text-eco-600 flex-shrink-0" />
                   <span>2-year warranty included</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm">
-                  <Check className="h-4 w-4 text-eco-600" />
+                <div className="flex items-center gap-2 text-xs md:text-sm">
+                  <Check className="h-3 w-3 md:h-4 md:w-4 text-eco-600 flex-shrink-0" />
                   <span>Technical support from product specialists</span>
                 </div>
                 {product.hasIoT && (
-                  <div className="flex items-center gap-2 text-sm">
-                    <Check className="h-4 w-4 text-eco-600" />
+                  <div className="flex items-center gap-2 text-xs md:text-sm">
+                    <Check className="h-3 w-3 md:h-4 md:w-4 text-eco-600 flex-shrink-0" />
                     <span>IoT dashboard integration ready</span>
                   </div>
                 )}
               </div>
               
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex flex-wrap items-center gap-3 md:gap-4 pt-3 md:pt-4">
                 <div className="flex items-center">
                   <Button
                     variant="outline"
@@ -143,7 +145,7 @@ const ProductDetail = () => {
                   >
                     -
                   </Button>
-                  <div className="h-8 px-4 flex items-center justify-center border-y">
+                  <div className="h-8 px-3 md:px-4 flex items-center justify-center border-y">
                     {quantity}
                   </div>
                   <Button
@@ -156,22 +158,22 @@ const ProductDetail = () => {
                   </Button>
                 </div>
                 
-                <div className="flex-1">
+                <div className="flex-1 min-w-[140px]">
                   <Button className="w-full gap-2" onClick={handleAddToCart}>
                     <ShoppingCart className="h-4 w-4" />
                     Add to Cart
                   </Button>
                 </div>
                 
-                <Button variant="outline" size="icon" className="h-10 w-10">
-                  <Heart className="h-5 w-5" />
+                <Button variant="outline" size="icon" className="h-8 w-8 md:h-10 md:w-10">
+                  <Heart className="h-4 w-4 md:h-5 md:w-5" />
                   <span className="sr-only">Add to wishlist</span>
                 </Button>
               </div>
               
-              <div className="bg-muted rounded-lg p-4 flex items-center gap-3">
-                <Truck className="h-5 w-5 text-muted-foreground" />
-                <div className="text-sm">
+              <div className="bg-muted rounded-lg p-3 md:p-4 flex items-center gap-2 md:gap-3">
+                <Truck className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground flex-shrink-0" />
+                <div className="text-xs md:text-sm">
                   <span className="font-medium">Estimated delivery:</span> 3-5 business days
                 </div>
               </div>
@@ -179,30 +181,32 @@ const ProductDetail = () => {
           </div>
         </div>
         
-        {/* Product Details Tabs */}
-        <Tabs defaultValue="details" className="mb-12">
-          <TabsList className="mb-4">
-            <TabsTrigger value="details">Product Details</TabsTrigger>
-            <TabsTrigger value="specs">Specifications</TabsTrigger>
-            <TabsTrigger value="reviews">Reviews ({product.reviewCount})</TabsTrigger>
-            <TabsTrigger value="support">Support & Documentation</TabsTrigger>
-          </TabsList>
+        {/* Product Details Tabs - Responsive design */}
+        <Tabs defaultValue="details" className="mb-8 md:mb-12">
+          <div className="overflow-x-auto pb-2">
+            <TabsList className="mb-4">
+              <TabsTrigger value="details">Product Details</TabsTrigger>
+              <TabsTrigger value="specs">Specifications</TabsTrigger>
+              <TabsTrigger value="reviews">Reviews ({product.reviewCount})</TabsTrigger>
+              <TabsTrigger value="support">Support</TabsTrigger>
+            </TabsList>
+          </div>
           
           <TabsContent value="details" className="space-y-4">
-            <h3 className="text-xl font-semibold">Product Description</h3>
-            <p>
+            <h3 className="text-lg md:text-xl font-semibold">Product Description</h3>
+            <p className="text-sm md:text-base">
               This innovative agricultural technology is designed to help farmers optimize their operations, 
               reduce waste, and increase yields. It incorporates the latest advancements in sensor technology, 
               data analytics, and sustainable farming practices.
             </p>
-            <p>
+            <p className="text-sm md:text-base">
               The system is easy to set up and configure, with minimal technical expertise required. 
               Once deployed, it continuously monitors conditions and provides actionable insights 
               through the integrated dashboard.
             </p>
             
-            <h3 className="text-xl font-semibold mt-6">Key Features</h3>
-            <ul className="list-disc pl-6 space-y-2">
+            <h3 className="text-lg md:text-xl font-semibold mt-6">Key Features</h3>
+            <ul className="list-disc pl-5 md:pl-6 space-y-1 md:space-y-2 text-sm md:text-base">
               <li>Real-time monitoring and data collection</li>
               <li>Advanced analytics and reporting capabilities</li>
               <li>Automated alerts and notifications</li>
@@ -213,8 +217,8 @@ const ProductDetail = () => {
               {product.is3D && <li>Precision engineered components for reliability</li>}
             </ul>
             
-            <h3 className="text-xl font-semibold mt-6">In the Box</h3>
-            <ul className="list-disc pl-6 space-y-2">
+            <h3 className="text-lg md:text-xl font-semibold mt-6">In the Box</h3>
+            <ul className="list-disc pl-5 md:pl-6 space-y-1 md:space-y-2 text-sm md:text-base">
               <li>Main unit</li>
               <li>Power adapter and cable</li>
               <li>Installation hardware</li>
@@ -224,37 +228,37 @@ const ProductDetail = () => {
           </TabsContent>
           
           <TabsContent value="specs">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Technical Specifications</h3>
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2">
+                <CardContent className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-4">Technical Specifications</h3>
+                  <div className="space-y-2 md:space-y-3 text-sm md:text-base">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Dimensions:</span>
                       <span>12 x 8 x 3 cm</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Weight:</span>
                       <span>350g</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Power Source:</span>
-                      <span>Rechargeable Li-ion Battery / Solar</span>
+                      <span>Li-ion Battery / Solar</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Battery Life:</span>
                       <span>Up to 6 months</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Water Resistance:</span>
                       <span>IP67 Rated</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Operating Temperature:</span>
                       <span>-20°C to 60°C</span>
                     </div>
@@ -263,30 +267,30 @@ const ProductDetail = () => {
               </Card>
               
               <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4">Connectivity</h3>
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-2 gap-2">
+                <CardContent className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-4">Connectivity</h3>
+                  <div className="space-y-2 md:space-y-3 text-sm md:text-base">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Wireless:</span>
                       <span>LoRaWAN, Wi-Fi, Bluetooth</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Range:</span>
                       <span>Up to 10km (LoRaWAN)</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Data Storage:</span>
-                      <span>8GB internal + Cloud storage</span>
+                      <span>8GB + Cloud storage</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">API:</span>
                       <span>RESTful API, WebSockets</span>
                     </div>
                     <Separator />
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-1 md:gap-2">
                       <span className="text-muted-foreground">Compatible Systems:</span>
                       <span>iOS, Android, Web</span>
                     </div>
@@ -297,32 +301,32 @@ const ProductDetail = () => {
           </TabsContent>
           
           <TabsContent value="reviews">
-            <h3 className="text-xl font-semibold mb-4">Customer Reviews</h3>
-            <div className="space-y-6">
+            <h3 className="text-lg md:text-xl font-semibold mb-4">Customer Reviews</h3>
+            <div className="space-y-4 md:space-y-6">
               {[1, 2, 3].map((index) => (
-                <div key={index} className="border-b pb-6">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center gap-3">
-                      <Avatar>
+                <div key={index} className="border-b pb-4 md:pb-6">
+                  <div className="flex flex-wrap md:flex-nowrap justify-between items-start mb-2 gap-2">
+                    <div className="flex items-center gap-2 md:gap-3">
+                      <Avatar className="h-8 w-8 md:h-10 md:w-10">
                         <AvatarImage src={`https://i.pravatar.cc/150?img=${index + 10}`} />
                         <AvatarFallback>US</AvatarFallback>
                       </Avatar>
                       <div>
-                        <div className="font-medium">User {index}</div>
-                        <div className="text-sm text-muted-foreground">2 months ago</div>
+                        <div className="font-medium text-sm md:text-base">User {index}</div>
+                        <div className="text-xs md:text-sm text-muted-foreground">2 months ago</div>
                       </div>
                     </div>
                     <div className="flex">
                       {Array(5).fill(0).map((_, i) => (
                         <Star 
                           key={i} 
-                          className="h-4 w-4 text-amber-500" 
+                          className="h-3 w-3 md:h-4 md:w-4 text-amber-500" 
                           fill={i < 5 - index % 2 ? "currentColor" : "none"} 
                         />
                       ))}
                     </div>
                   </div>
-                  <p className="text-sm">
+                  <p className="text-xs md:text-sm">
                     This product has significantly improved my farm operations. The installation was straightforward,
                     and the data it provides has helped me make better decisions about irrigation and resource allocation.
                     Battery life is excellent, and the customer support team was very helpful with my questions.
@@ -333,36 +337,30 @@ const ProductDetail = () => {
           </TabsContent>
           
           <TabsContent value="support">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4">Documentation</h3>
-                <ul className="space-y-3">
+                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Documentation</h3>
+                <ul className="space-y-2 md:space-y-3">
                   <li>
-                    <a href="#" className="flex items-center gap-2 text-primary hover:underline">
+                    <a href="#" className="flex items-center gap-2 text-primary hover:underline text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                       User Manual (PDF)
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center gap-2 text-primary hover:underline">
+                    <a href="#" className="flex items-center gap-2 text-primary hover:underline text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                       Quick Start Guide (PDF)
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center gap-2 text-primary hover:underline">
+                    <a href="#" className="flex items-center gap-2 text-primary hover:underline text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                       Installation Instructions (PDF)
                     </a>
                   </li>
                   <li>
-                    <a href="#" className="flex items-center gap-2 text-primary hover:underline">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                      Technical Specifications (PDF)
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="flex items-center gap-2 text-primary hover:underline">
+                    <a href="#" className="flex items-center gap-2 text-primary hover:underline text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                       Troubleshooting Guide
                     </a>
@@ -371,27 +369,27 @@ const ProductDetail = () => {
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold mb-4">Customer Support</h3>
-                <div className="space-y-4">
-                  <p>
+                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4">Customer Support</h3>
+                <div className="space-y-3 md:space-y-4">
+                  <p className="text-sm md:text-base">
                     Our dedicated support team is available to help you with any questions or issues you may encounter.
                   </p>
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                       <span>Phone: +1 (800) 123-4567</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                       <span>Email: support@agritechhub.com</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-sm md:text-base">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                       <span>Hours: Monday-Friday, 8am-6pm EST</span>
                     </div>
                   </div>
                   
-                  <div className="pt-4">
+                  <div className="pt-2 md:pt-4">
                     <Button>Contact Support</Button>
                   </div>
                 </div>
@@ -400,10 +398,10 @@ const ProductDetail = () => {
           </TabsContent>
         </Tabs>
         
-        {/* Related Products */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold mb-6">Related Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* Related Products - Responsive grid */}
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Related Products</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {relatedProducts.map((relatedProduct) => (
               <ProductCard key={relatedProduct.id} product={relatedProduct} />
             ))}
