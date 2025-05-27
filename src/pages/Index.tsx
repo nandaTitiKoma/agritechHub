@@ -122,7 +122,7 @@ const Index = () => {
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl md:text-3xl font-bold">Diskusi Terbaru</h2>
             <Link to="/forum" className="text-primary hover:underline story-link">
-              Bergabung dalam percakapan
+              Bergabung dalam diskusi
             </Link>
           </div>
           

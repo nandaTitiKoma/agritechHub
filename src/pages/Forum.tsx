@@ -117,7 +117,7 @@ const Forum = () => {
                   <DrawerHeader>
                     <DrawerTitle>Filter Diskusi</DrawerTitle>
                     <DrawerDescription>
-                      Atur urutkan dan filter diskusi
+                      Atur urutan dan filter diskusi
                     </DrawerDescription>
                   </DrawerHeader>
                   <div className="px-4">
